@@ -434,33 +434,33 @@ const Main = () => {
     }
     
     if (!loaded) return <Loading />;
-    return (
-        <MainBody>
-            <Header />
+    // return (
+    //     <MainBody>
+    //         <Header />
 
-            <div id="feature-top"></div>
-            <div className="feature-container">
+    //         <div id="feature-top"></div>
+    //         <div className="feature-container">
 
             
-            <SwitchTransition>
-                <Transition
-                    key={uiView}
-                    timeout={200}
-                    onEnter={n=>gsap.from(n,{duration:.2, alpha: 0})}
-                    onExit={n=>gsap.to(n,{duration:.2, alpha:0})}
-                    mountOnEnter
-                    unmountOnExit
-                    appear={true}
-                    >
-                        {getCurrentView()}
-                    </Transition>
-            </SwitchTransition>
-            </div>
-            {/* <Section content={content} />
-            <Feature /> */}
-            <Footer content={content} related={store.sheets.related} shareUrl={store.sheets.global[0].shareUrl} />
-        </MainBody>
-    )
+    //         <SwitchTransition>
+    //             <Transition
+    //                 key={uiView}
+    //                 timeout={200}
+    //                 onEnter={n=>gsap.from(n,{duration:.2, alpha: 0})}
+    //                 onExit={n=>gsap.to(n,{duration:.2, alpha:0})}
+    //                 mountOnEnter
+    //                 unmountOnExit
+    //                 appear={true}
+    //                 >
+    //                     {getCurrentView()}
+    //                 </Transition>
+    //         </SwitchTransition>
+    //         </div>
+    //         {/* <Section content={content} />
+    //         <Feature /> */}
+    //         <Footer content={content} related={store.sheets.related} shareUrl={store.sheets.global[0].shareUrl} />
+    //     </MainBody>
+    // )
 
     return (
         <SwitchTransition>
@@ -477,12 +477,30 @@ const Main = () => {
                 {loaded &&
                     
                     <MainBody>
-                        {/* <LoopingBgVid /> */}
-                        <Header />
-                        <Standfirst content={content} />
-                        <Body />
-                        <Footer content={content} related={store.sheets.related} shareUrl={store.sheets.global[0].shareUrl} />
-                    </MainBody>
+                            <Header />
+
+                            <div id="feature-top"></div>
+                            <div className="feature-container">
+
+                            
+                            <SwitchTransition>
+                                <Transition
+                                    key={uiView}
+                                    timeout={200}
+                                    onEnter={n=>gsap.from(n,{duration:.2, alpha: 0})}
+                                    onExit={n=>gsap.to(n,{duration:.2, alpha:0})}
+                                    mountOnEnter
+                                    unmountOnExit
+                                    appear={true}
+                                    >
+                                        {getCurrentView()}
+                                    </Transition>
+                            </SwitchTransition>
+                            </div>
+                            {/* <Section content={content} />
+                            <Feature /> */}
+                            <Footer content={content} related={store.sheets.related} shareUrl={store.sheets.global[0].shareUrl} />
+                        </MainBody>
                 }
             </Transition>            
         </SwitchTransition>
