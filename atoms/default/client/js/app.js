@@ -26,12 +26,11 @@ gsap.defaults({
 const setHtml = (html) => ({__html: html});
 
 const scrollToTop = () => {
-    const t = document.getElementById('feature-top').offsetTop;
+    const t = document.getElementById('feature-top');
     // if (Math.abs(t - window.scrollY) < 200) {
     //     return false;
     // } 
-    window.scroll({
-        top: t,
+    t.scrollIntoView({
         behavior: 'smooth'
     });
     return false;
@@ -310,8 +309,8 @@ const ImageGrid = ({type, assets}) => {
         case 'row1':
             return (
                 <Fragment>
-                <div className="md:flex gap-2">
-                    <img className="md:w-3/5"  src={`${assetsPath}/${assetList[0]}`} alt="" />
+                <div className="md:flex">
+                    <img className="md:w-3/5 md:mr-2"  src={`${assetsPath}/${assetList[0]}`} alt="" />
                     <img className="md:w-2/5"  src={`${assetsPath}/${assetList[1]}`} alt="" />
                 </div>
             </Fragment>
@@ -319,8 +318,8 @@ const ImageGrid = ({type, assets}) => {
         default:
             return (
                 <Fragment>
-                    <div className="md:flex gap-2">
-                        <img className="md:w-2/5" src={`${assetsPath}/${assetList[0]}`} alt="" />
+                    <div className="md:flex">
+                        <img className="md:w-2/5 md:mr-2" src={`${assetsPath}/${assetList[0]}`} alt="" />
                         <img className="md:w-3/5" src={`${assetsPath}/${assetList[1]}`} alt="" />
                     </div>
                 </Fragment>
