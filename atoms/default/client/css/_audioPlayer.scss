@@ -1,10 +1,5 @@
 
-video {
-    border: 1px solid #aaa;
-    object-fit: initial;
-    // background: black;
-    display: none;
- }
+
  ::cue {
     font-size: 1.3rem;
     // font-family: "Guardian Text Sans Web";
@@ -21,6 +16,12 @@ video {
     // align-items: flex-end;
     // justify-content: center;
 
+    video {
+        border: 1px solid #aaa;
+        object-fit: initial;
+        // background: black;
+        display: none;
+     }    
     .ap-container {
         width: 100%;
         @include mq(tablet) {

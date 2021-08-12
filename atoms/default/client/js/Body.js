@@ -1,9 +1,9 @@
 import {h, Component, Fragment} from "preact";
 import Section from "./Section";
-import store from "./store";
+// import store from "./store";
 import {Provider, useSelector} from 'react-redux';
 
-const Brother = () => {
+export default () => {
     const sections = useSelector(s => s.sheets.sections);
     
     const list = sections.map((v,i)=>{
@@ -17,6 +17,6 @@ const Brother = () => {
     )
 }
 
-export default function () {
-    return (<Provider  store={store} ><Brother/></Provider>)
-};
+// export default function () {
+//     return (<Provider  store={store} ><Brother/></Provider>)
+// };

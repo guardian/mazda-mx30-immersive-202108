@@ -5,7 +5,7 @@ export default class RelatedContent extends Component {
         const cards = props.cards.map(v=> 
             <div class="related-item">
                 <a href={v.link} target="_blank">
-                    {v.img && <div className="img" style={{backgroundImage:`url(<%= path %>/${v.img})`}} />}
+                    {v.img && <div className="img" style={{backgroundImage:`url(${v.img})`}} />}
                     <p>{v.title}</p>
                 </a>
             </div>

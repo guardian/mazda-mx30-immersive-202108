@@ -1,3 +1,10 @@
+:root {
+  --brand-primary: #F56100;
+  --brand-secondary: #34621E;
+  --brand-alt: #FFF06B;
+  --brand-alt-b: #D8E9E7;
+}
+
 #Live {
   margin-top: 5vh;
 }
@@ -44,19 +51,27 @@
 
 h1, h2 {
   line-height: 1.2;
-  font-size: 30/16 + rem;
-  text-decoration: underline;
-  text-transform: uppercase;
+  font-size: 42/16 + rem;
+  // text-decoration: underline;
+  // text-transform: uppercase;
   font-family: "Display Sans", serif;
-  font-weight: 700;
+  
   
   span {
     font-weight: 700;
     font-family: "Display Sans", serif;
   }
   @include mq(tablet) {
-    font-size: 45/16 + rem;
+    font-size: 64/16 + rem;
   }
+}
+
+h1 {
+  font-weight: 300;
+}
+
+h2 {
+  font-weight: normal;
 }
 
 q {
@@ -88,13 +103,7 @@ q {
 }
 
 #Glabs {
-  // visibility: hidden;
-  // opacity: 0;
-  background-color: #000;
-  // > div {
-  //   background-color: #FFEAB0;
-
-  // }
+  background-color: var(--brand-alt-b);
 }
 
 .scroll-icon {
@@ -103,278 +112,174 @@ q {
   fill: white;
   stroke: white;
 }
-header {
-  overflow: hidden;
-  .flex-container {
-    height: 80vh;
-    align-items: flex-end;
-  }
-  video {
-    position: absolute;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    mix-blend-mode: screen;
-  }
-  .bg {
-    // position: absolute;
-    min-height: 80vh;
-    // width: 120vw;
-    // background-attachment: fixed;
-    background-size: cover;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;    
-    // border: 10px solid #FFB321;
-    @include mq($until: desktop) {
-      background-position: 50%;
-    }
-  }
 
+@import 'components/header';
+@import 'components/standfirst';
+
+
+.feature-title {
+  background-color: var(--brand-secondary);
+  padding: 0.7rem 1rem;
+
+  @include mq(tablet) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+.feature {
   .title {
-    position: relative;
-    color: white;
-    // margin-left: 10%;
-    padding: 2rem;
-    max-width: 40rem;
-    p {
-      padding-bottom: 2rem;
-      padding-right: 2rem;
-    }
-    @include mq(tablet) {
-      margin: auto;
-      // p  {
-      //   padding-right: 8rem;
-      // }
-    }
-    // @include mq(desktop) {
-    //   max-width: 50%;
-    // }
-  }
-
-  .subhead {
-    @include mq(tablet) {
-      padding-top: 2rem;
-      text-align: center;
-    }
-  }
-
-  .client {
     display: flex;
-    justify-content: flex-end;
-    padding: 2rem;
-    color: black;
-    img {
-      display: inline-block;
-      vertical-align: middle;
-      padding-left: 1rem;
+    justify-content: center;
+    margin-top: -2rem;
+    color: white;
+  }
+  p {
+    margin: 2rem auto;
+  }
+  @include mq(tablet) {
+    p {
+      max-width: 30rem;
     }
-    &>p {
-      display: flex;
-      align-items: center;
-      svg {
-        width: 80px;
+  }
+
+  .image-grid {
+    img {
+      // width: 100%;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .btn-back {
+    --rad: 20px;
+    background-color: var(--brand-alt);
+    border-radius: var(--rad);
+    position: relative;
+    padding: 0.5rem 1.5rem;
+    display: inline-block;
+    line-height: 1;
+    i,svg {
+      display: inline;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      width: 90%;
+      height: 82%;
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      border: 3px solid var(--brand-alt-b);
+      border-radius: var(--rad);
+    }
+  }
+}
+.feature-container {
+  min-height: 80vh;
+  .bg {
+    background-image: linear-gradient(180deg, rgba(225,245,243,0) 48%, rgba(191,213,210,1) 48%);
+  }
+  header {
+    margin-top: 2rem;
+    clip-path: url('#clipper');
+  }
+}
+
+
+.feature-home {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  
+  .prompt {
+    align-items: center;
+    white-space: nowrap;
+    border: 1px solid;
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    padding-left: 4rem;
+    position: relative;
+    margin-bottom: 2rem;
+    i {
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+    }    
+  }
+
+  .nav-container {
+    padding: 3rem 0;
+    width: 100%;
+
+    @include mq(tablet) {
+      padding: 8rem 0;
+    }
+  }
+
+  nav {
+    background: url("<%= path %>/mx30.png") no-repeat 50%;
+    background-size: contain;
+    width: 100%;
+    height: 40vh;
+    position: relative;
+  }
+  width: 100%;
+  //sound, cabin, skyactive, style, sustainable
+  $icons: (12, 1, 'sound'), (45, 83, 'cabin'), (79,65, 'skyactive'), (4,79, 'style'), (75,-8, 'sustainable');
+  @mixin iconPos($icons) {
+    @for $i from 1 to length($icons) + 1 {
+      $pos: nth($icons, $i);
+      .btn-#{nth($pos, 3)} {
+        top: nth($pos, 2 ) + 0%;
+        left: nth($pos, 1 ) + 0%;
       }
     }
   }
+  @include iconPos($icons);
+  // @include mq(mobile) {
+  //   width: 500px;
+  // }
+  @include mq(tablet) {
+    width: 600px;
+    $icons: (18, -6, 'sound'), (45,98, 'cabin'), (89,66, 'skyactive'), (-2,80, 'style'), (75,-18, 'sustainable');
+    @include iconPos($icons);
+
+  }
+  @include mq(desktop) {
+    width: 800px;
+    // $icons: (18, -6, 'sound'), (45,98, 'cabin'), (79,66, 'skyactive'), (4,80, 'style'), (75,-18, 'sustainable');
+    $icons: (2,80, 'style'), (75,-18, 'sustainable');
+    @include iconPos($icons);
+  }
+  .btn-feature {
+    position: absolute;
+    svg {
+      transform: scale(0.7);
+    }
+
+    @include mq(tablet) {
+      svg {
+        transform: scale(1);
+      }
+    }
+
+    .hover {
+      stroke: var(--brand-primary);
+      transition: all 0.5s ease-in-out;
+      stroke-width: 4px;
+    }
+    // top: 20%;
+    // left: 20%;
+  }
 }
-
-.main  {
-  // height: 300px;
-}
-
-
 
 section {
-  --panelBgColor: #D4CCFF;
-  background-color: var(--panelBgColor);
-  
-  &.feature {
-    background: url("<%= path %>/texture.png") repeat 50% var(--panelBgColor);
-    // background-size: 40%;
-  }
-
-  h2 {
-    color: black;
-  }
-  @include mq(desktop) {
-    display: flex;
-    padding: 0;
-  }
-  position: relative;
-  overflow: hidden;
-  &.container {
-    &>div {
-      flex-basis: 50%;
-      // width: 50%;
-    }
-  }
-  .content {
-    padding: 0 1rem 1rem;
-    // padding-bottom: 10rem;
-    color: white;
-    @include mq(desktop) {
-      padding: 5rem 4rem 5rem;
-    }
-
-    a {
-      font-size: 100%;
-      text-decoration: underline;
-      font-weight: normal;
-      color: white;
-    }
-  }
-
-  &.dark-text .content {
-    color: black;
-    a {
-      color: black;
-    }
-  }
-
-  .panel .wrap {
-    padding: 0 1rem 0rem 1rem;
-  }
-
-  @include mq(desktop) {
-    .wrap {
-      max-width: 30rem;
-    }
-    
-    .panel .wrap {
-      margin-left: auto;
-      margin-right: 1.5rem;
-    }
-
-  }
-
-
-
-  .panel {
-    @include mq(desktop) {
-      min-height: 100vh;
-
-    }
-
-  }
-
-  .audio {
-    position: relative;
-    // background: white;
-    border-radius: 10px;
-
-
-    .title {
-      // background: #F7F3EB;
-      // border-radius: 10px 10px 0 0;
-      text-transform: uppercase;
-      color:black;
-      padding: 0.5rem 0rem;
-    }
-    .player-body {
-      // padding: 0 2rem;
-    }
-
-    @include mq(tablet) {
-      // width: 80%;
-      margin: 2rem auto;
-      max-width: 30rem;
-    }
-
-    .desc p {
-      font-size: 14/16 + rem;
-      color: black;
-      line-height: 1.5;
-    }
-
-  }
-  .bg {
-    // background: url("<%= path %>/texture.png") no-repeat 50% var(--panelBgColor);
-    // background: no-repeat 50% var(--panelBgColor);
-    background-size: cover;
-    background-attachment: fixed;
-    @include mq(desktop) {
-      height: 100vh;
-    }
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .collage {
-      // height: 40vh;
-      // @include mq(tablet) {
-      //   height: 56vh;
-      // }
-      padding: 1rem 0;
-      position: relative;
-      img {
-        max-width: 100%;
-        max-height: 100%;
-        margin: auto;
-        // height: auto;
-        width: auto;
-      }
-      .clip {
-        clip-path: circle();
-      }
-      .clip+.heading {
-        padding-top: 1rem;
-        // position: relative;
-        // margin-top: -4rem;
-      }
-      // img:nth-child(n+2) {
-      //   position: absolute;
-      //   top: 0;
-      //   left: 50%;
-      //   transform: translate3d(-50%, 0, 2px);
-      // }
-
-      // img:nth-child(3) {
-      //   transform-origin: 380px 364px;
-      // }
-    }
-  }
-
-}
-
-$stand-first-color: #FFEAB0;
-.standfirst {
-  padding-top: 2rem;
-  background-color: $stand-first-color;
-  .content {
-    margin: auto;
-    max-width: 40rem;
-    color: black;
-    .lines {
-      &:before, &:after {
-        display: block;
-        content: '';
-        height: 6px;
-        background-color: #000;
-        margin: auto;
-        // width: 60%;
-      }
-      .body {
-        padding: 2rem 0;
-        width: 95%;
-        margin: auto;
-      }
-    }
-  }
-
-  .scroll-icon {
-    fill: black;
-    stroke: black;
-  }
+  padding: 2rem 0;
 }
 
 section.footer {
-  background-color: $stand-first-color;
+  // background-color: $stand-first-color;
+  padding: 2rem;
 
   .disc p {
     font-size: 10/16 + rem;

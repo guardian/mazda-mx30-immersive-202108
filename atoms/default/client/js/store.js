@@ -4,15 +4,21 @@ import thunk from "redux-thunk";
 const initialState = {
     dataLoaded: false,
     sheets: null,
-    content: {}
+    content: {},
+    UI: {
+        view: 'home'
+    }
 };
+
+export const assetsPath = "<%= path %>";
 
 export const 
     ACTION_DATA_LOADED = 'action_data_loaded',
     ACTION_SET_SHEETS = 'action_set_sheets',
     ACTION_SET_LEVEL = 'action_set_level',
     ACTION_SET_MUTED = 'action_set_muted',
-    ACTION_PAUSE_AUDIO = 'action_set_paused'
+    ACTION_PAUSE_AUDIO = 'action_set_paused',
+    ACTION_SET_VIEW = 'action_set_view'
     ;
 
 const setSheets = (sheets) => {
@@ -35,6 +41,11 @@ const rootReducer = (state = initialState, action) => {
             const content = {};
             action.payload.global.forEach(v => {
                 content[v.key] = v.content;
+            });
+
+            content['sections'] = {};
+            action.payload.sections.forEach(v => {
+                content.sections[v.panel] = v;
             })
             
             return {...state, sheets: action.payload, content: content };
@@ -47,6 +58,8 @@ const rootReducer = (state = initialState, action) => {
             return {...state, muted: action.payload};
         case ACTION_PAUSE_AUDIO:
             return {...state, pauseAudio: action.payload};
+        case ACTION_SET_VIEW:
+            return {...state, UI: {...state.UI, view: action.payload}};
         case ACTION_SET_LEVEL:
             const ops = [...state.audioLayers];
             ops[state.currentLevel] = action.payload.option;
