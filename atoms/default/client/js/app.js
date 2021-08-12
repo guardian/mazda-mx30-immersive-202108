@@ -26,12 +26,11 @@ gsap.defaults({
 const setHtml = (html) => ({__html: html});
 
 const scrollToTop = () => {
-    const t = document.getElementById('feature-top').offsetTop;
+    const t = document.getElementById('feature-top');
     // if (Math.abs(t - window.scrollY) < 200) {
     //     return false;
     // } 
-    window.scroll({
-        top: t,
+    t.scrollIntoView({
         behavior: 'smooth'
     });
     return false;
