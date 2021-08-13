@@ -331,6 +331,12 @@ const Feature = ({content}) => {
     const featRef = useRef();
 
     useEffect(()=>{
+        
+        // gsap.set(featRef.current, {alpha: 0});
+    },[]);
+
+    const handleHeaderLoaded = () => {
+        console.log('header loaded');
         gsap.timeline()
         .from(featRef.current.querySelector('header'),{duration: 3, scale: 1.2, ease:'sine.out'})
         .from('#crect', { attr: { height: '0%'}, duration: 0.8, ease:'sine.out'},0.1)
@@ -338,6 +344,7 @@ const Feature = ({content}) => {
         .from(Array.from(featRef.current.querySelectorAll('p')),{alpha: 0, y: 50, duration: 1},'>')
         // .from(Array.from(featRef.current.querySelectorAll('.image-grid img')),{alpha: 0,},'<0.3')
         ;
+        gsap.set(featRef.current, {alpha: 1});
 
         // Array.from(featRef.current.querySelectorAll('.image-grid img')).forEach((v)=>{
         //     console.log(v);
@@ -362,20 +369,19 @@ const Feature = ({content}) => {
                 // scrub: true
               });
         })
-        setTimeout(()=>{ScrollTrigger.refresh()}, 100);
-
-    },[]);
+        setTimeout(()=>{ScrollTrigger.refresh()}, 100);        
+    }
     
     const Hero = () => {
         if (content.hero.indexOf('mp4')>=0) {
-            return <video className="mx-auto" muted autoPlay loop playsInline src={`${assetsPath}/${content.hero}`} />
+            return <video className="mx-auto" onLoadedMetadata={handleHeaderLoaded} muted autoPlay loop playsInline src={`${assetsPath}/${content.hero}`} />
         } else {
-            return <img src={`${assetsPath}/${content.hero}`} alt="" />
+            return <img src={`${assetsPath}/${content.hero}`} onLoad={handleHeaderLoaded} alt="" />
         }
     }
 
     return (
-        <section ref={featRef} className="feature p-8">
+        <section ref={featRef} className="feature p-8" style={{opacity:0}}>
             <div className="container mx-auto">
 
             
