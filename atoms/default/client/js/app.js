@@ -343,6 +343,7 @@ const Feature = ({content}) => {
         .from(featRef.current.querySelector('.title'),{alpha: 0, y: 50, duration: 1},'>-.1')
         .from(Array.from(featRef.current.querySelectorAll('p')),{alpha: 0, y: 50, duration: 1},'>')
         // .from(Array.from(featRef.current.querySelectorAll('.image-grid img')),{alpha: 0,},'<0.3')
+        .to(featRef.current, {alpha: 1}, 0)
         ;
         gsap.set(featRef.current, {alpha: 1});
 
