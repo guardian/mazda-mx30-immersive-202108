@@ -61,11 +61,11 @@ const Loading = () =>
     </FlexContainer>
 
 
-const Attribution = () => {
+const Attribution = ({content}) => {
     return (
         <div className="attribution">
             <p>Paid for by 
-                <a href="#" target="_blank">
+                <a href={content.logoLink} target="_blank">
                     <Logo />
                 </a>
             </p>
@@ -84,7 +84,7 @@ const Header = () => {
     return (
         <div>
             <div className="header relative">
-                <Attribution />
+                <Attribution content={content} />
                 <div className="lg:grid lg:grid-cols-2">
                     <div className="bg md:order-2"
                         style={`background-image: linear-gradient(360deg, rgba(0,0,0,0.7) 10%, transparent 40%), url('${assetsPath}/hero.jpg');`}>
