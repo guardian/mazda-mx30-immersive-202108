@@ -109,20 +109,27 @@ const Header = () => {
 const Footer = ({content, related, shareUrl}) => {
 
     return (
-        <section className="footer dark-text px-2">
-            <div className="content">
-                <div className="cta-wrap">
-                    <div className="cta" dangerouslySetInnerHTML={setHtml(content.cta)} />
-                    <div className="share">
-                        <SocialBar title={content.shareTitle} url={shareUrl} />
+        <Fragment>
+
+            <section className="footer dark-text px-2">
+                <div className="content">
+                    <div className="cta-wrap">
+                        <div className="cta" dangerouslySetInnerHTML={setHtml(content.cta)} />
+                        <div className="share">
+                            <SocialBar title={content.shareTitle} url={shareUrl} />
+                        </div>
                     </div>
+                    
                 </div>
-                
-                <div className="related">
-                    <RelatedContent cards={related} />
-                </div>
-            </div>
-        </section>
+            </section>
+
+            <section className="related p-8">
+                    <div className="mx-auto" >
+                        <h3>Related content</h3>
+                        <RelatedContent cards={related} />
+                    </div>
+            </section>
+        </Fragment>
     )
 }
 
@@ -331,8 +338,8 @@ const Feature = ({content}) => {
     const featRef = useRef();
 
     useEffect(()=>{
-        
-        // gsap.set(featRef.current, {alpha: 0});
+        console.log('mount')
+        gsap.set(featRef.current, {alpha: 0});
     },[]);
 
     const handleHeaderLoaded = () => {
@@ -342,9 +349,10 @@ const Feature = ({content}) => {
         .from('#crect', { attr: { height: '0%'}, duration: 0.8, ease:'sine.out'},0.1)
         .from(featRef.current.querySelector('.title'),{alpha: 0, y: 50, duration: 1},'>-.1')
         .from(Array.from(featRef.current.querySelectorAll('p')),{alpha: 0, y: 50, duration: 1},'>')
+        .to(featRef.current, {alpha: 1, duration: 0.4}, 0);
         // .from(Array.from(featRef.current.querySelectorAll('.image-grid img')),{alpha: 0,},'<0.3')
         ;
-        gsap.set(featRef.current, {alpha: 1});
+        // gsap.set(featRef.current, {alpha: 1});
 
         // Array.from(featRef.current.querySelectorAll('.image-grid img')).forEach((v)=>{
         //     console.log(v);
@@ -381,11 +389,11 @@ const Feature = ({content}) => {
     }
 
     return (
-        <section ref={featRef} className="feature p-8" style={{opacity:0}}>
-            <div className="container mx-auto">
-
-            
+        <section ref={featRef} className="feature" style={{opacity: 0}}>
+            <div className="container mx-auto p-8">
                 <FeatureBack />
+            </div>
+            <div className="md:container mx-auto">                
                 <header className="relative">
                     <svg className="clip absolute t-0 l-0" width="100%" height="100%" viewbox="0 0 400 200" version="1.1">
                         <clipPath  id="clipper">
@@ -397,6 +405,8 @@ const Feature = ({content}) => {
                         <FeatureTitle title={content.heading} />
                     </div>
                 </header>
+            </div>
+            <div className="container mx-auto p-8">
                 <article>
                     <div className="above-fold" dangerouslySetInnerHTML={setHtml(content.aboveFold)} />
                     <div className="image-grid">
@@ -404,8 +414,11 @@ const Feature = ({content}) => {
                     </div>
                     <div className="below-fold" dangerouslySetInnerHTML={setHtml(content.belowFold)} />
                 </article>
+            </div>
+            <div className="container mx-auto p-8">
                 <FeatureBack />
             </div>
+
         </section>
     )
 }

@@ -67,11 +67,17 @@ h1, h2 {
 }
 
 h1 {
-  font-weight: 300;
+  font-weight: 800;
 }
 
 h2 {
-  font-weight: normal;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 30/16 + rem;
+  font-weight: bold;
+  font-family: "Display Sans", serif;
 }
 
 q {
@@ -84,6 +90,13 @@ q {
   span {
     display: block;
     padding: 0.8rem 0 0.5rem;
+  }
+}
+
+p {
+  margin-top: 1rem;
+  &:first-child {
+    margin-top: 0;
   }
 }
 
@@ -178,6 +191,7 @@ q {
   min-height: 80vh;
   .bg {
     background-image: linear-gradient(180deg, rgba(225,245,243,0) 48%, rgba(191,213,210,1) 48%);
+    padding-bottom: 2rem;
   }
   header {
     margin-top: 2rem;
@@ -280,6 +294,7 @@ section {
 section.footer {
   // background-color: $stand-first-color;
   padding: 2rem;
+  padding-bottom: 4rem;
 
   .disc p {
     font-size: 10/16 + rem;
@@ -291,13 +306,22 @@ section.footer {
     margin: auto;
     max-width: 60rem;
     @include mq($until: desktop ) {
-      padding-top: 1rem;
+      // padding-top: 1rem;
 
     }
   }
   .cta-wrap {
     margin: auto;
     max-width: 40rem;
+  }
+  .cta {
+      p {
+      
+      font-size: 18/16 * 100%;
+    }
+    a {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -329,8 +353,12 @@ section.footer {
     }
   }
 
-  #Footer .related {
-    width: 100%;
+  .related {
+    width: 100%;    
+    background: #EDF5F4;
+    >div {
+      max-width: 50rem;
+    }
   }
   .ClientDetails {
     position: absolute;
