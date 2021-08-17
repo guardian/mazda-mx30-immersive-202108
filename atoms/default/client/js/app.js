@@ -161,23 +161,23 @@ const SmoothScroll = ({children}) => {
 }
 
 const MainBody = ({children}) => {
-    const mainRef = useRef();
+    // const mainRef = useRef();
 
-    useEffect(()=>{
-        const resize = () => {
-            mainRef.current.style.height = mainRef.current.scrollHeight * 0.5 + 'px';
-            // console.log(mainRef.current.scrollHeight, mainRef.current.scrollHeight * 0.5 + 'px');
+    // useEffect(()=>{
+    //     const resize = () => {
+    //         mainRef.current.style.height = mainRef.current.scrollHeight * 0.5 + 'px';
+    //         // console.log(mainRef.current.scrollHeight, mainRef.current.scrollHeight * 0.5 + 'px');
             
-        }
-        window.addEventListener('resize', resize);
+    //     }
+    //     window.addEventListener('resize', resize);
 
-        resize();
+    //     resize();
 
-        return () => window.removeEventListener('resize', resize);
-    },[]);
+    //     return () => window.removeEventListener('resize', resize);
+    // },[]);
 
     return (
-        <div className="main" ref={mainRef}>
+        <div className="main">
             {children}
         </div>
     )
