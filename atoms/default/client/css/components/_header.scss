@@ -12,7 +12,7 @@
       mix-blend-mode: screen;
     }
     .bg {
-        height: 35vh;
+        height: 50vh;
         @include mq(tablet) {
             height: 540px;
         }
